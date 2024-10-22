@@ -1,0 +1,32 @@
+﻿.home-page {
+    background-image: url('../Images/strength.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    
+   
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #ffd700; /* Yellow (Gold) */
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* Larger shadow with more opacity */
+    font-size: 3rem;
+    font-weight: bold;
+    -webkit-text-stroke: 1px #000; /* Outline with black color */
+}
+.description {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 1.5rem;
+    color: #8a2be2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+}

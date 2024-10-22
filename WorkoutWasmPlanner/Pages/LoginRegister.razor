@@ -1,0 +1,66 @@
+﻿@page "/loginregister"
+
+<PageTitle>Login or Register</PageTitle>
+
+<div class="page-background">
+
+    <div class="d-flex justify-content-center">
+        <EditForm >
+        <!-- Login Form -->
+        <div class="col-md-8 shadow p-5 rounded login-form form-container mx-4">
+            <h3 class="text-center mb-4">Login</h3>
+            <div class="mb-4">
+                <label for="loginUsername" class="form-label">Username</label>
+                <input type="text" id="loginUsername" class="form-control form-control-lg" placeholder="Enter your username" />
+            </div>
+            <div class="mb-4">
+                <label for="loginPassword" class="form-label">Password</label>
+                <input type="password" id="loginPassword" class="form-control form-control-lg" placeholder="Enter your password" />
+            </div>
+            <div class="d-grid">
+                <button class="btn btn-lg" style="background-color: #004d40; color: white;">Login</button>
+            </div>
+        </div>
+        </EditForm>
+
+        <!-- Register Form -->
+        <div class="col-md-8 shadow p-5 rounded register-form form-container mx-4">
+            <h3 class="text-center mb-4">Register</h3>
+            <div class="mb-4">
+                <label for="registerUsername" class="form-label">Username</label>
+                <input type="text" id="registerUsername" class="form-control form-control-lg" placeholder="Choose a username" />
+            </div>
+            <div class="mb-4">
+                <label for="registerEmail" class="form-label">Email</label>
+                <input type="email" id="registerEmail" class="form-control form-control-lg" placeholder="Enter your email" />
+            </div>
+            <div class="mb-4">
+                <label for="registerBirthdate" class="form-label">Birthdate</label>
+                <input type="date" id="registerBirthdate" class="form-control form-control-lg" />
+            </div>
+            <div class="mb-4">
+                <label for="registerPassword" class="form-label">Password</label>
+                <input type="password" id="registerPassword" class="form-control form-control-lg" placeholder="Choose a password" />
+            </div>
+            <div class="mb-4">
+                <label for="registerConfirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" id="registerConfirmPassword" class="form-control form-control-lg" placeholder="Confirm your password" />
+            </div>
+            <div class="d-grid">
+                <button class="btn btn-lg" style="background-color: #d32f2f; color: white;">Register</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code{
+    
+    
+
+
+
+
+
+
+
+}

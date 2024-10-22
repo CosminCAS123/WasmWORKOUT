@@ -1,0 +1,52 @@
+﻿@inherits LayoutComponentBase
+@using Blazored.LocalStorage
+@using Helpers
+@inject ILocalStorageService localStorage
+@inject NavigationManager NavigationManager
+
+<div class="top-row pl-4 ">
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand me-3" href="#">Get Fit</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Workouts</a>
+                    </li>
+                   <li class="nav-item">
+    <span @onclick="NavigateToProfile" class="nav-link" style="cursor: pointer;">Profile</span>
+</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Supplements</a>
+                    </li>
+                </ul>
+                <span class="navbar-text ms-auto me-2" >
+                    Stay healthy
+                </span>
+            </div>
+        </div>
+    </nav>
+    <div >
+        @Body
+    </div>
+</div>
+
+@code{
+    private async Task NavigateToProfile()
+    {
+
+        bool? isLoggedIn = await localStorage.GetItemAsync<bool?>(LocalStorageKeys.IsLoggedIn);
+        if (isLoggedIn is null || isLoggedIn == false)
+        {
+            NavigationManager.NavigateTo("/loginregister");
+        }
+        else NavigationManager.NavigateTo("/profile");
+    }   
+
+}
