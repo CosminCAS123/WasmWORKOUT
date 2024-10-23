@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "UMN7kwttGQSL+uW477F6wvreC5FdZSxvXIqq/ZRTxdU=",
+  "Source": "WorkoutWasmPlanner.API",
+  "BasePath": "_content/WorkoutWasmPlanner.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

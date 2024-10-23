@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WorkoutWasmPlanner.API.Models;
-
+using WorkoutWasmPlanner.Shared.Models;
 namespace WorkoutWasmPlanner.API.Data
 {
     public class WorkoutPlannerDbContext : DbContext

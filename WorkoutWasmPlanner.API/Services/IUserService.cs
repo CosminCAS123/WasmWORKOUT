@@ -1,4 +1,4 @@
-﻿using WorkoutWasmPlanner.API.Models;
+﻿using WorkoutWasmPlanner.Shared.Models;
 
 namespace WorkoutWasmPlanner.API.Services
 {

@@ -1,64 +1,145 @@
 ﻿@page "/loginregister"
-
+@using WorkoutWasmPlanner.Shared.Models;
 <PageTitle>Login or Register</PageTitle>
 
 <div class="page-background">
 
     <div class="d-flex justify-content-center">
-        <EditForm >
+        <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
         <!-- Login Form -->
+        <DataAnnotationsValidator/>
+        <ValidationSummary/>
+
         <div class="col-md-8 shadow p-5 rounded login-form form-container mx-4">
             <h3 class="text-center mb-4">Login</h3>
             <div class="mb-4">
-                <label for="loginUsername" class="form-label">Username</label>
-                <input type="text" id="loginUsername" class="form-control form-control-lg" placeholder="Enter your username" />
+                <label for="loginUsername" class="form-label">Username</label> 
+                <input type="text" id="loginUsername" @bind-value = "loginModel.Username" class="form-control form-control-lg" placeholder="Enter your username" />
             </div>
             <div class="mb-4">
                 <label for="loginPassword" class="form-label">Password</label>
-                <input type="password" id="loginPassword" class="form-control form-control-lg" placeholder="Enter your password" />
+                <input type="password" id="loginPassword" @bind-value = "loginModel.Password" class="form-control form-control-lg" placeholder="Enter your password" />
             </div>
             <div class="d-grid">
                 <button class="btn btn-lg" style="background-color: #004d40; color: white;">Login</button>
             </div>
-        </div>
+            <!-- Error message display -->
+                @if (!string.IsNullOrEmpty(loginError))
+                {
+                    <p style ="color:red"> @loginError</p>
+                }
+            </div>
         </EditForm>
-
+        <EditForm Model="registerModel" OnValidSubmit="HandleRegister">
         <!-- Register Form -->
         <div class="col-md-8 shadow p-5 rounded register-form form-container mx-4">
             <h3 class="text-center mb-4">Register</h3>
             <div class="mb-4">
                 <label for="registerUsername" class="form-label">Username</label>
-                <input type="text" id="registerUsername" class="form-control form-control-lg" placeholder="Choose a username" />
+                <input type="text" id="registerUsername"  @bind-value = "registerModel.Username" class="form-control form-control-lg" placeholder="Choose a username" />
             </div>
             <div class="mb-4">
                 <label for="registerEmail" class="form-label">Email</label>
-                <input type="email" id="registerEmail" class="form-control form-control-lg" placeholder="Enter your email" />
+                <input type="email" id="registerEmail" @bind-value = "registerModel.Email" class="form-control form-control-lg" placeholder="Enter your email" />
             </div>
             <div class="mb-4">
                 <label for="registerBirthdate" class="form-label">Birthdate</label>
-                <input type="date" id="registerBirthdate" class="form-control form-control-lg" />
+                <input type="date" id="registerBirthdate" @bind-value = "registerModel.Birthdate" class="form-control form-control-lg" />
             </div>
             <div class="mb-4">
                 <label for="registerPassword" class="form-label">Password</label>
-                <input type="password" id="registerPassword" class="form-control form-control-lg" placeholder="Choose a password" />
+                <input type="password" id="registerPassword" @bind-value = "registerModel.Password" class="form-control form-control-lg" placeholder="Choose a password" />
             </div>
             <div class="mb-4">
                 <label for="registerConfirmPassword" class="form-label">Confirm Password</label>
-                <input type="password" id="registerConfirmPassword" class="form-control form-control-lg" placeholder="Confirm your password" />
+                <input type="password" id="registerConfirmPassword" @bind-value = "registerModel.ConfirmPassword" class="form-control form-control-lg" placeholder="Confirm your password" />
             </div>
             <div class="d-grid">
                 <button class="btn btn-lg" style="background-color: #d32f2f; color: white;">Register</button>
             </div>
-        </div>
+                @if (!string.IsNullOrEmpty(registerError))
+                {
+                    <p style="color:red">@registerError</p>
+                }
+            </div>
+        </EditForm>
     </div>
 </div>
 
 @code{
-    
-    
+
+    private User registerModel = new User();
+    private User loginModel = new User();
+
+    private string? loginError = string.Empty;
+    private string? registerError = string.Empty;
+    [Inject]
+    private HttpClient Http { get; set; } = default!;
+
+    private async Task HandleRegister()
+    {
+        try
+        {
+            // Send the registration data to the API
+            var response = await Http.PostAsJsonAsync("api/users/register", registerModel);
+
+            if (response.IsSuccessStatusCode)
+            {
+                registerError = null;
+                Console.WriteLine("Registration successful.");
+                // You can redirect to another page after registration if needed
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
+            {
+                registerError = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Conflict: {registerError}");
+            }
+            else
+            {
+                registerError = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Registration failed: {registerError}");
+            }
+        }
+        catch (Exception ex)
+        {
+            registerError = $"Registration failed: {ex.Message}";
+        }
+    }
+
+    private async Task HandleLogin()
+    {
+        try
+        {
+            var response = await Http.PostAsJsonAsync("api/users/login", loginModel);
+            if (response.IsSuccessStatusCode)
+            {
+                loginError = "Login successfull!";//REDIRECT TO NEXT PAGE HERE
+                                                  ///////////////////////////////////////////////////////
+
+                return;
+            }
+
+            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                loginError = await response.Content.ReadAsStringAsync();
+                return;
+            }
+
+            if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                loginError = await response.Content.ReadAsStringAsync();
+                return;
+            }
+
+            loginError = "An Unknown error occured";
 
 
-
+        }
+        catch(Exception ex)
+        {
+            loginError = ex.Message;
+        }
+    }
 
 
 

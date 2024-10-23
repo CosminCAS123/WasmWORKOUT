@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WorkoutWasmPlanner.API.Models;
 using WorkoutWasmPlanner.API.Services;
-
+using WorkoutWasmPlanner.Shared.Models;
 namespace WorkoutWasmPlanner.API.Controllers
 {
     [ApiController]
@@ -28,14 +27,31 @@ namespace WorkoutWasmPlanner.API.Controllers
 
             if (!result.Success)
             {
-                return BadRequest(result.Error);
+                return Conflict(result.Error);
             }
 
-            return Ok("User registered successfully.");
+            return CreatedAtAction(nameof(Register), new { id = user.UserID }, "User registered successfully.");
+
         }
 
 
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] User user)
+        {
+          if (!ModelState.IsValid)
+            {
+                return BadRequest("InvalidLoginData");
+            }
 
+            var result = await userService.ValidateLoginAsync(user);
+
+            if (!result.Success)
+            {
+                return Unauthorized(result.Error);
+            }
+
+            return Ok("Login successfull.");
+        }
 
 
 

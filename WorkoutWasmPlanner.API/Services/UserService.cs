@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WorkoutWasmPlanner.API.Data;
-using WorkoutWasmPlanner.API.Models;
+using WorkoutWasmPlanner.Shared.Models;
 
 namespace WorkoutWasmPlanner.API.Services
 {
@@ -11,6 +11,7 @@ namespace WorkoutWasmPlanner.API.Services
         public UserService(WorkoutPlannerDbContext dbcontext , PasswordService pass_service)
         {
             this.dbContext = dbcontext;
+            this.passwordService = pass_service;
         }
 
         public async Task<User?> GetByEmailAsync(string email)
