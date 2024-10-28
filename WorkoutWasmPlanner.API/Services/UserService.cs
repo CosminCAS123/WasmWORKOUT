@@ -37,6 +37,7 @@ namespace WorkoutWasmPlanner.API.Services
             var check_for_email_task = GetByEmailAsync(user.Email);
             var check_for_username = GetByUsernameAsync(user.Username);
             var finished_task = await Task.WhenAny(check_for_username, check_for_email_task);
+            
 
             if (finished_task.Result is not null)
             {
@@ -48,8 +49,23 @@ namespace WorkoutWasmPlanner.API.Services
                     Error = error_message
                 };
             }
+
+            var remaining_task = finished_task == check_for_email_task ? check_for_username : check_for_email_task;
+            if (await remaining_task is not null)
+            {
+                var error_message = remaining_task == check_for_email_task ? "This email already exists." : "This username already exists";
+
+                return new Result
+                {
+                    Success = false,
+                    Error = error_message
+                };
+            }
             // its not existent in the database
             //add to db
+            //hash password
+            var hashed_password = await passwordService.HashPasswordAsync(user.Password);
+            user.Password = hashed_password;
 
             await this.dbContext.Users.AddAsync(user);
 

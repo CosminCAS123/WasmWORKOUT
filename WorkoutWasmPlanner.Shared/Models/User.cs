@@ -24,9 +24,7 @@ namespace WorkoutWasmPlanner.Shared.Models
         [Required(ErrorMessage = "Birthdate is required")]
         public DateTime Birthdate { get; set; } 
 
-        [Compare("Password", ErrorMessage = "Passwords do not match")]
-        public string ConfirmPassword { get; set; }
-
+       
         public List<int> CompletedWorkoutIds { get; set; } = new List<int>();
         public int Height { get; set; }
 

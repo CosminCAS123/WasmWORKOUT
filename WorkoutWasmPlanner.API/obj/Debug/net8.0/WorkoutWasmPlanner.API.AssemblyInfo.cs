@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorkoutWasmPlanner.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b53751348c06e825d6cc022b886d1c7f349809fe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a860f662dff2c9bafbecd6e28b88d181863fd43c")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorkoutWasmPlanner.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorkoutWasmPlanner.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

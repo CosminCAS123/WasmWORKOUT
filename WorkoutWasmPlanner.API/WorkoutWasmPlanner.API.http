@@ -1,6 +1,6 @@
 @WorkoutWasmPlanner.API_HostAddress = http://localhost:5222
 
-GET {{WorkoutWasmPlanner.API_HostAddress}}/weatherforecast/
+GET {{WorkoutWasmPlanner.API_HostAddress}}/users/
 Accept: application/json
 
 ###
