@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorkoutWasmPlanner.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a860f662dff2c9bafbecd6e28b88d181863fd43c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c3accfd68c9096410e572befd8fec1901ff343a0")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorkoutWasmPlanner.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorkoutWasmPlanner.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

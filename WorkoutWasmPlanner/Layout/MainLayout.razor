@@ -29,6 +29,16 @@
                 <span class="navbar-text ms-auto me-2" >
                     Stay healthy
                 </span>
+                <span class="navbar-text ms-auto me-2">
+                    @if (isLoggedIn && !string.IsNullOrEmpty(username))
+                    {
+                        <span>Welcome, @username!</span>
+                    }
+                    else
+                    {
+                        <span>Stay healthy</span>
+                    }
+                </span>
             </div>
         </div>
     </nav>
@@ -38,6 +48,22 @@
 </div>
 
 @code{
+    private string username;
+    private bool isLoggedIn;
+
+    protected override async Task OnInitializedAsync()
+    {
+         isLoggedIn = await localStorage.GetItemAsync<bool>(LocalStorageKeys.IsLoggedIn);
+        if (isLoggedIn)
+        {
+            this.username = await localStorage.GetItemAsync<string>(LocalStorageKeys.LoggedInUsername);
+        }
+
+    }
+
+
+
+
     private async Task NavigateToProfile()
     {
 
@@ -45,7 +71,7 @@
         if (isLoggedIn is null || isLoggedIn == false)
         {
             NavigationManager.NavigateTo("/loginregister");
-        }
+        }   
         else NavigationManager.NavigateTo("/profile");
     }   
 

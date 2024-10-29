@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkoutWasmPlanner", "Worko
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkoutWasmPlanner.API", "WorkoutWasmPlanner.API\WorkoutWasmPlanner.API.csproj", "{3B264F92-17AB-4424-87EC-FE0C53F12412}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkoutWasmPlanner.Shared", "WorkoutWasmPlanner.Shared\WorkoutWasmPlanner.Shared.csproj", "{9D866BC1-3376-4D08-A38B-A6AE0FF78B7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkoutWasmPlanner.Shared", "WorkoutWasmPlanner.Shared\WorkoutWasmPlanner.Shared.csproj", "{9D866BC1-3376-4D08-A38B-A6AE0FF78B7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

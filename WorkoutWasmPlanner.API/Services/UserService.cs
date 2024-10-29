@@ -76,7 +76,7 @@ namespace WorkoutWasmPlanner.API.Services
 
         }
 
-        public async Task<Result> ValidateLoginAsync(User user)
+        public async Task<Result> ValidateLoginAsync(LoginModel user)
         {
             //get the user by username
             User? check_user = await GetByUsernameAsync(user.Username); 

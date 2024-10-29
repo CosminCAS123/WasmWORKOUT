@@ -10,8 +10,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureServices();
 
-var app = builder.Build();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowBlazorClient", policy =>
+        policy.WithOrigins("https://localhost:7264") // Replace with the exact URL of your Blazor client
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials());
+});
 
+
+var app = builder.Build();
+app.UseCors("AllowBlazorClient");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

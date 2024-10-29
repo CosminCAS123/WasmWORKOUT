@@ -18,10 +18,7 @@ namespace WorkoutWasmPlanner.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] User user)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Invalid user data.");
-            }
+          
 
             var result = await userService.RegisterUserAsync(user);
 
@@ -36,12 +33,9 @@ namespace WorkoutWasmPlanner.API.Controllers
 
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] User user)
+        public async Task<IActionResult> Login([FromBody] LoginModel user)
         {
-          if (!ModelState.IsValid)
-            {
-                return BadRequest("InvalidLoginData");
-            }
+         
 
             var result = await userService.ValidateLoginAsync(user);
 

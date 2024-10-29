@@ -4,5 +4,6 @@
     {
 
         public const string IsLoggedIn = "IsLoggedIn";
+        public const string LoggedInUsername = "Username";
     }
 }
